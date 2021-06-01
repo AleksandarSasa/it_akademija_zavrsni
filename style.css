@@ -1,0 +1,57 @@
+/* ----------Variables---------- */
+:root {
+    --fontFamily: 'Open Sans', sans-serif; 
+}
+/* ----------basic styles---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #E4E4E4;
+    font-family: var(--fontFamily);
+}
+.wrapper {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 10px 20px 20px;
+}
+p {
+    margin-bottom: 0;
+}
+hr {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #000000;
+}
+a:hover {
+    text-decoration: underline;
+    color: rgb(0, 102, 204);
+}
+/* ----------topBar---------- */
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 7px;
+}
+/* ----------navigation---------- */
+
+.navbar-brand {
+    font-size: 40px;
+}
+.navbar-brand:hover {
+    text-decoration: none;
+}
+#navbarNav {
+    transition: height .5s ease;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
