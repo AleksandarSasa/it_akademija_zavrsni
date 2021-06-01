@@ -1,6 +1,7 @@
 /* ----------Variables---------- */
 :root {
     --fontFamily: 'Open Sans', sans-serif; 
+    --transition: .2s ease;
 }
 /* ----------basic styles---------- */
 * {
@@ -13,16 +14,10 @@ body {
     font-family: var(--fontFamily);
 }
 .wrapper {
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     background-color: #FFFFFF;
     padding: 10px 20px 20px;
-}
-p {
-    margin-bottom: 0;
-}
-hr {
-    margin: 0;
 }
 a {
     text-decoration: none;
@@ -31,15 +26,19 @@ a {
 a:hover {
     text-decoration: underline;
     color: rgb(0, 102, 204);
+    transition: var(--transition);
 }
 /* ----------topBar---------- */
 .topBar {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 7px;
+    padding-bottom: 10px;
 }
 /* ----------navigation---------- */
-
+.navbar {
+    padding-bottom: 0;
+    padding-top: 0;
+}
 .navbar-brand {
     font-size: 40px;
 }
@@ -54,4 +53,71 @@ a:hover {
 .navbar-toggler-icon:focus {
     outline: none;
     box-shadow: none;
+}
+/* ----------main---------- */
+main {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+/* ----------section-sidebar---------- */
+.sidebar {
+    flex: 0 0 27%;
+}
+
+/* ----------section-center---------- */
+.center {
+    flex: 0 0 67%;
+}
+
+
+
+/* ----------media queries---------- */
+@media only screen and (max-width: 575px) {
+    .wrapper {
+        width: 100%;
+    }
+    .navbar-brand {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .wrapper {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .wrapper {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1400px) {
+    .wrapper {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 1401px) {
+    
+}
+
+
+
+
+
+
+/* bootstrap fix  */
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    padding-right: 0;
+    padding-left: 0;
+}
+p {
+    margin-bottom: 0;
+}
+hr {
+    margin: 0;
 }

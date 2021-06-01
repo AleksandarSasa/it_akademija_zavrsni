@@ -28,10 +28,10 @@
             <section class="topBar">
                 <!-- ----------section-topBar---------- -->
                 <article>
-                    <p><i class="fas fa-phone"></i>&nbsp+387 66 000 111</p>
+                <p><a href="#login.php"><i class="fas fa-user"></i>&nbsp;Prijava</a>&nbsp;</p>
                 </article>
                 <article>
-                    <p><a href="#login.php"><i class="fas fa-user"></i>&nbsp;Prijava</a>&nbsp; &nbsp;<i class="fas fa-shopping-cart"></i>&nbsp<span>0</span> </p>
+                    <p>&nbsp;<i class="fas fa-shopping-cart"></i>&nbsp<span>0</span> </p>
                 </article>
             </section>
             <hr> <!-- ----------end-section-topBar---------- -->
@@ -64,3 +64,4 @@
             
             </section> <!-- ----------end-section-navigation---------- -->
         </header> <!-- -----end-header----- -->
+    
