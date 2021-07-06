@@ -1,6 +1,8 @@
+<?php
+require_once("require.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -16,10 +18,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-
+    <script src="js/jquery-3.6.0.min.js"></script>
     <title>Cvecara Flos</title>
 </head>
-
+<?php 
+$db=new Database("localhost","root","","cvecara");
+$db->connect();
+if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspjesna konekcija na bazu")."</div>"; exit(); }
+?>
 <body>
     <!-- -----wrapper----- -->
     <div class="wrapper">
@@ -47,7 +53,7 @@
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link <?php if($page=='pocetna') echo 'active' ?>" aria-current="page" href="index.php">Pocetna</a>
+                                        <a class="nav-link <?php if($page=='pocetna') echo 'active' ?>" href="index.php">Pocetna</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link <?php if($page=='onama') echo 'active' ?>" href="onama.php">O nama</a>

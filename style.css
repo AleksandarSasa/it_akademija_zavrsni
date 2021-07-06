@@ -106,6 +106,28 @@ main {
 }
 
 
+/* classes  */
+.classInfo {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    padding:2px 9px;
+}
+.classInfoError {
+    background-color: red;
+    color: white;
+}
+.classInfoInformation {
+    background-color: blue;
+    color: white;
+}
+.classInfoSuccess {
+    background-color: green;
+    color: white;
+}
+
+
 
 
 
