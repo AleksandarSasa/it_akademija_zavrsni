@@ -33,6 +33,9 @@ class Database{
     public function fobject($a){
         return mysqli_fetch_object($a);
     }
+    public function insert_id(){
+        return mysqli_insert_id($this->db);
+    }
     
 }
 

@@ -1,4 +1,6 @@
-<?php $page="pocetna"; include("partials/header.php"); ?>
+<?php
+$page="pocetna";
+include("partials/header.php"); ?>
 <main>
     <section class="sidebar">
         <h2>Kategorije</h2>
@@ -9,7 +11,7 @@
             echo "<br>";
         };
         ?> <br>
-        <h2>Profil</h2>
+         <h2>Profil</h2>
         <?php if(Login::loginCheck()) {
             echo "<a href='profile.php'>Pregled profila</a><br>";
             echo "<a href='korpa.php'>Korpa</a><br>";
@@ -31,26 +33,20 @@
         
         
         ?>
-        
     </section>
 
     <section class="center">
     <?php 
-        if(isset($_GET['kategorija'])) $upit="SELECT * FROM proizvodiview WHERE obrisan=0 AND kategorijaID=".$_GET["kategorija"]." ORDER BY id DESC";
-        else $upit="SELECT * FROM proizvodiview WHERE obrisan=0 ORDER BY id DESC";
+        if(isset($_GET['id'])) $upit="SELECT * FROM proizvodiview WHERE id=".$_GET["id"];
+        else exit();
         $rez=$db->query($upit);
         while($red=mysqli_fetch_object($rez)) {
             if(file_exists("images/avatars/".$red->autorID.".jpg")) $slika="images/avatars/".$red->autorID.".jpg";
             else $slika="images/avatars/default.jpg";
-            echo "<img src='{$slika}' height='25px'>{$red->ime}";
-            echo "<p><a href='single.php?id=".$red->id."'>$red->naslov</a>, $red->tekst</p>";
-            
+            echo "<img src='{$slika}' height='25px'> {$red->ime} ";
+            echo "$red->naslov, $red->tekst </p>";
             echo "<br>";
     };
-    echo Info::error("ovoo je prrrikaz greske nekeee");
-    echo Info::error("kratka greska");
-    echo Info::information("obavestenje informacija");
-    echo Info::success("uspeh potvrda");
     ?>
     
     

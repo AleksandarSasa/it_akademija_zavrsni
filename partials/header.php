@@ -32,9 +32,23 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
         <header>
             <!-- -----header----- -->
             <section class="topBar">
+                <?php $last=$_SERVER['REQUEST_URI']; ?>
                 <!-- ----------section-topBar---------- -->
                 <article>
-                <p><a href="#login.php"><i class="fas fa-user"></i>&nbsp;Prijava</a>&nbsp;</p>
+                <p>
+                 <?php 
+                 if(isset($_SESSION['id'])) {
+                     if(file_exists("images/avatars/".$_SESSION['id'].".jpg")) { $slika="images/avatars/".$_SESSION['id'].".jpg"; }
+                     else $slika="images/avatars/default.jpg";
+                 }
+                 
+                    if(Login::loginCheck()) { echo "<span style='color:#77f'><img src='{$slika}' height='20px'>{$_SESSION['ime']}</span> ({$_SESSION['status']})"; 
+                    }
+                        else echo "<a href='login.php'><i class='fas fa-user'></i>&nbsp;Prijava</a>&nbsp;";
+                 ?>   
+                
+            
+                </p>
                 </article>
                 <article>
                     <p>&nbsp;<i class="fas fa-shopping-cart"></i>&nbsp<span>0</span> </p>
@@ -46,7 +60,7 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
                 <article>
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="#">Cvećara</a>
+                            <a class="navbar-brand" href="index.php">Cvećara</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>

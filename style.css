@@ -28,6 +28,21 @@ a:hover {
     color: rgb(0, 102, 204);
     transition: var(--transition);
 }
+input {
+    padding: 5px;
+    border:1px solid black;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+button:hover {
+    background: white;
+    transition: var(--transition);
+}
 /* ----------topBar---------- */
 .topBar {
     display: flex;
@@ -70,9 +85,46 @@ main {
 .center {
     flex: 0 0 67%;
 }
-
-
-
+/* ----------login.php---------- */
+.login-container {
+    margin: 0 auto;
+    width: 30%;
+    text-align: center;
+    padding: 10px 30px 10px 30px;
+    background: rgb(243, 228, 228);
+}
+.login-container label {
+    font-size: 20px;
+}
+.login-container label[for="password"] {
+    margin-top: 10px;
+}
+.login-container input {
+    padding: 5px;
+    border:1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 0;
+}
+.login-container input[type="button"], .login-container input[type="submit"] {
+    width: 40%;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+.login-container input[type="button"]:hover, .login-container input[type="submit"]:hover {
+    background: white;
+    transition: var(--transition);
+} 
+.login-wrapper {
+    width: 70%;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 10px 20px 20px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
 /* ----------media queries---------- */
 @media only screen and (max-width: 575px) {
     .wrapper {
@@ -109,7 +161,7 @@ main {
 /* classes  */
 .classInfo {
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0px;
     text-align: center;
     border-radius: 5px;
     padding:2px 9px;
