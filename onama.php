@@ -5,5 +5,4 @@
 
 
 
-</div> <!-- -----end-wrapper----- -->
 <?php include("partials/footer.php"); ?>

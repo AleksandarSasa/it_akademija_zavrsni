@@ -22,6 +22,7 @@ include("partials/header.php"); ?>
                 echo "<a href='deleteuser.php'>Obrisi korisnika</a><br>";
                 echo "<a href='addproduct.php'>Dodaj proizvod</a><br>";
                 echo "<a href='deleteproduct.php'>Obrisi proizvod</a><br>";
+                echo "<a href='statistics.php'>Statistika</a><br>";
             }
             if($_SESSION['status']=="urednik") {
                 echo "<h2>Opcije </h2>";
@@ -64,10 +65,12 @@ include("partials/header.php"); ?>
                    $upit="INSERT INTO korisnici (ime, prezime, email, lozinka, status) VALUES ('{$ime}', '{$prezime}', '{$email}', '{$lozinka}', '{$status}')";
                    $db->query($upit);
                    if($db->error()) {
+                        Statistics::log("logs/korisnici.log", "{$_SESSION['email']} greska prilikom dodavanja korisnika: ".$db->error());
                         echo Info::error("Greska: {$db->error()} ");
                    } else {
                        $id=$db->insert_id();
                        echo Info::success("Korisnik (ID: $id) dodat u bazu podataka");
+                       Statistics::log("logs/korisnici.log", "{$_SESSION['email']} uspesno dodao korisnika $email");
                        if($_FILES['avatar']['name']!="") { //ako je prazno ime znaci nije poslan podatak i nema avatara i tu nista ne radimo
                            $avatarIme="images/avatars/".$id.".jpg";
                            $ekstenzije=array("jpg", "jpeg", "webp", "png");
@@ -75,6 +78,7 @@ include("partials/header.php"); ?>
                            if(in_array(pathinfo($avatarIme, PATHINFO_EXTENSION), $ekstenzije)) {
                                 if(@move_uploaded_file($tmp, $avatarIme)) {
                                     echo Info::success("Avatar dodan");
+                                    Statistics::log("logs/korisnici.log", "{$_SESSION['email']} : uspesan upload avatara za korisnika $email, ime avatara: $id.jpg");
                                 } else echo Info::error("Neuspesno dodavanje avatara");
                            }
                        }

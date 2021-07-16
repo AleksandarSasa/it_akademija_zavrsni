@@ -37,44 +37,52 @@ include("partials/header.php"); ?>
     </section> 
         
     <section class="center">
-    <?php if(isset($_SESSION['status']) && $_SESSION['status']=="Admin"): ?>
+    <?php if(isset($_SESSION['status']) && ($_SESSION['status']=="Admin" || $_SESSION['status']=="urednik") ): ?>
         <?php 
             $poruka="";
             if(isset($_POST['dugme'])) {
-                    if($_POST['idKorisnika']!='0') {
-                        $upit="UPDATE korisnici SET aktivan=0 WHERE id=".$_POST['idKorisnika'];
+                    if($_POST['idProizvoda']!='0') {
+                        $upit="UPDATE proizvodi SET obrisan=1 WHERE id=".$_POST['idProizvoda'];
                         $db->query($upit);
                         if($db->error()) {
-                            Statistics::log("logs/korisnici.log", "{$_SESSION['email']} greska prilikom brisanja korisnika: {$db->error()}");
                             $poruka=Info::error("Greska: {$db->error()} ");
-                       } else {
-                           if(file_exists("images/avatars/".$_POST['idKorisnika'].".jpg")) 
-                           unlink("images/avatars/".$_POST['idKorisnika'].".jpg");
-                            $poruka=Info::information("Korisnik izbrisan");
-                            Statistics::log("logs/korisnici.log", "{$_SESSION['email']} uspesno obrisao korisnika sa id: {$_POST['idKorisnika']}");
+                            Statistics::log("logs/proizvodi.log", "{$_SESSION['email']} - greska pri izvrsavanju upita: {$db->error()}");
                         }
-                    } else $poruka=Info::information("Izaberite korisnika");
+                    //     else {
+                    //        if(file_exists("images/".$_POST['idProizvoda'].".jpg")) 
+                    //        unlink("images/".$_POST['idProizvoda'].".jpg");
+                    //         $poruka=Info::information("Proizvod obrisan");
+                    //         Statistics::log("logs/proizvodi.log", "{$_SESSION['email']} uspesno obrisao proizvod sa id: {$_POST['idProizvoda']}");
+                    //     }
+                    } else $poruka=Info::information("Izaberite proizvod");
                 } 
         ?>
-        <h2>Obrisi korisnika</h2>
-        <form action="deleteuser.php" method="post" enctype="multipart/form-data">
-        <select name="idKorisnika" id="idKorisnika" class="mt-3">
-            <option value="0">--Izaberite korisnika--</option>
+        <h2>Obrisi proizvod</h2>
+        <form action="deleteproduct.php" method="post" enctype="multipart/form-data">
+        <select name="idProizvoda" id="idProizvoda" class="mt-3">
+            <option value="0">--Izaberite proizvod--</option>
             <?php 
-                $upit="SELECT * FROM korisnici WHERE aktivan=1";
+                if($_SESSION['status']=="Admin") { $upit="SELECT * FROM proizvodiview WHERE obrisan=0 ORDER BY id DESC"; }
+                else {
+                    $upit="SELECT * FROM proizvodiview WHERE obrisan=0 AND autorID={$_SESSION['id']} ORDER BY id DESC";
+                }
+                
                 $rez=$db->query($upit);
-                if($db->error()) { echo Info::error("Greska: {$db->error()} "); }
+                if($db->error()) { 
+                    echo Info::error("Greska: {$db->error()} ");
+                    Statistics::log("logs/proizvodi.log", "{$_SESSION['email']} - greska pri izvrsavanju upita: {$db->error()}");
+                }
                 else {
                     while($red=$db->fobject($rez)) {
-                        echo "<option value='{$red->id}'>{$red->ime} {$red->prezime}</option>";
+                        echo "<option value='{$red->id}'>{$red->naslov}</option>";
                     }
                 }
             ?>
         </select> <br>
-        <button class="mt-3" name="dugme">Obrisi korisnika</button>
+        <button class="mt-3" name="dugme">Obrisi proizvod</button>
          <?php echo "<br>".$poruka; ?>
         </form>
-        <?php else: echo Info::error("Ovoj stranici moze pristupiti samo admin"); endif; ?>
+        <?php else: echo Info::error("Ovoj stranici moze pristupiti samo admin/urednik"); endif; ?>
     </section>
 </main>
 

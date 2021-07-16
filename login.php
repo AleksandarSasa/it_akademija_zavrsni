@@ -60,10 +60,21 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
                         $_SESSION['id']=$red->id;
                         $_SESSION['ime']=$red->ime;
                         $_SESSION['status']=$red->status;
+                        $_SESSION['email']=$red->email;
+                        Statistics::log("logs/logovanja.log", "$email se uspesno prijavio");
                         header("Location: index.php");
-                    } else echo Info::error("Pogresna lozinka");
-                } else echo Info::information("Korisnik nije aktivan");
-            } else echo Info::information("Korisnik ne postoji");
+                    } else {
+                        Statistics::log("logs/logovanja.log", "$email - [pokusaj logina {$_SERVER['REMOTE_ADDR']}] - pogresna lozinka");
+                        echo Info::error("Pogresna lozinka");
+                    } 
+                } else {
+                    Statistics::log("logs/logovanja.log", "$email - [pokusaj logina {$_SERVER['REMOTE_ADDR']}] - korisnik nije aktivan");
+                    echo Info::information("Korisnik nije aktivan");
+                } 
+            } else {
+                Statistics::log("logs/logovanja.log", "$email - [pokusaj logina {$_SERVER['REMOTE_ADDR']}] - korisnik ne postoji");
+                echo Info::information("Korisnik ne postoji");
+            } 
         } else echo Info::error("Svi podaci su obavezni");
     } 
     ?>
@@ -73,5 +84,5 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
 
 </div>
 
-</div> <!-- -----end-wrapper----- -->
+
 <?php include("partials/footer.php"); ?>

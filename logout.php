@@ -1,8 +1,8 @@
 <?php 
+require_once("require.php");
 session_start();
-
-   session_unset();
-   session_destroy();
-   header("location: index.php"); 
-
+Statistics::log("logs/logovanja.log", "{$_SESSION['email']} se uspesno odjavio");
+session_unset();
+session_destroy();
+header("location: index.php"); 
 ?>

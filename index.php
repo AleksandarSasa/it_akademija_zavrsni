@@ -20,6 +20,7 @@
                 echo "<a href='deleteuser.php'>Obrisi korisnika</a><br>";
                 echo "<a href='addproduct.php'>Dodaj proizvod</a><br>";
                 echo "<a href='deleteproduct.php'>Obrisi proizvod</a><br>";
+                echo "<a href='statistics.php'>Statistika</a><br>";
             }
             if($_SESSION['status']=="urednik") {
                 echo "<h2>Opcije </h2>";
@@ -40,17 +41,16 @@
         else $upit="SELECT * FROM proizvodiview WHERE obrisan=0 ORDER BY id DESC";
         $rez=$db->query($upit);
         while($red=mysqli_fetch_object($rez)) {
+            if(file_exists("images/".$red->id.".jpg")) $slika="images/".$red->id.".jpg";
+            else $slika="images/default.png";
+            echo "<img src='{$slika}' height='200px' width='200px'>";
+            echo "<p><a href='single.php?id=".$red->id."'>$red->naslov</a>,<br> $red->tekst $red->cena$</p>";
             if(file_exists("images/avatars/".$red->autorID.".jpg")) $slika="images/avatars/".$red->autorID.".jpg";
             else $slika="images/avatars/default.jpg";
             echo "<img src='{$slika}' height='25px'>{$red->ime}";
-            echo "<p><a href='single.php?id=".$red->id."'>$red->naslov</a>, $red->tekst</p>";
             
-            echo "<br>";
+            echo "<br><br><br>";
     };
-    echo Info::error("ovoo je prrrikaz greske nekeee");
-    echo Info::error("kratka greska");
-    echo Info::information("obavestenje informacija");
-    echo Info::success("uspeh potvrda");
     ?>
     
     
@@ -60,5 +60,4 @@
 
 
 
-</div> <!-- -----end-wrapper----- -->
 <?php include("partials/footer.php"); ?>

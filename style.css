@@ -78,12 +78,16 @@ main {
 
 /* ----------section-sidebar---------- */
 .sidebar {
-    flex: 0 0 27%;
+    flex: 0 0 17%;
 }
 
 /* ----------section-center---------- */
 .center {
-    flex: 0 0 67%;
+    flex: 0 0 77%;
+}
+/* ----------section-footer---------- */
+.footer {
+    background-color: #b8b4b4;
 }
 /* ----------login.php---------- */
 .login-container {
