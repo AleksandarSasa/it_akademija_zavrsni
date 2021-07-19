@@ -34,15 +34,16 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
 <div class="login-wrapper">
 <div class="login-container">
 <h2 class="text-center">PRIJAVA:</h2>
-    <form action="login.php" method="post">
+    <form action="login.php" method="post" name="forma" id="forma">
         <label for="email">Email Adresa:</label><br>
         <input type="email" name="email" placeholder="Unesite e-mail" id="email"> <br> 
         <label for="password">Lozinka:</label> <br>
         <input type="password" name="password" placeholder="Unesite lozinku" id="password">
         <input type="button" value="Nazad" onclick="window.location.href='index.php'">
-        <input type="submit"  value="Prijava">
+        <!-- <input type="submit"  value="Prijava"> -->
+        <button>Prijava</button>
     </form>
-
+    <div id="informacija"></div>
 
 
 <?php 

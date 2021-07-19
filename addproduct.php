@@ -2,39 +2,7 @@
 $page="pocetna";
 include("partials/header.php"); ?>
 <main>
-    <section class="sidebar">
-        <h2>Kategorije</h2>
-        <?php $upit="SELECT * FROM kategorije"; 
-        $rez=$db->query($upit);
-        while($red=mysqli_fetch_object($rez)) {
-            echo "<a href='index.php?kategorija=$red->id'>$red->nazivKategorije</a>";
-            echo "<br>";
-        };
-        ?> <br>
-         <h2>Profil</h2>
-        <?php if(Login::loginCheck()) {
-            echo "<a href='profile.php'>Pregled profila</a><br>";
-            echo "<a href='korpa.php'>Korpa</a><br>";
-            echo "<a href='logout.php'>Odjava</a><br><br>";
-            if($_SESSION['status']=="Admin") {
-                echo "<h2>Opcije </h2>";
-                echo "<a href='adduser.php'>Dodaj korisnika</a><br>";
-                echo "<a href='deleteuser.php'>Obrisi korisnika</a><br>";
-                echo "<a href='addproduct.php'>Dodaj proizvod</a><br>";
-                echo "<a href='deleteproduct.php'>Obrisi proizvod</a><br>";
-                echo "<a href='statistics.php'>Statistika</a><br>";
-            }
-            if($_SESSION['status']=="urednik") {
-                echo "<h2>Opcije </h2>";
-                echo "<a href='addproduct.php'>Dodaj proizvod</a><br>";
-                echo "<a href='deleteproduct.php'>Obrisi proizvod</a><br>";
-            }
-        } else echo "<a href='login.php'>Prijavi se</a><br> <a href='register.php'>Registracija</a>"
-        
-        
-        
-        ?>
-    </section> 
+<?php include("partials/sidebar.php") ?>
         
     <section class="center">
     <?php if(isset($_SESSION['status']) && ($_SESSION['status']=="Admin" || $_SESSION['status']=="urednik") ): ?>
@@ -52,8 +20,10 @@ include("partials/header.php"); ?>
             ?>
         </select> <br>
         <input type="text" name="cena" placeholder="Cena proizvoda"><br> 
-        <p class="mt-2">Slika:</p>
-        <input type="file" name="slika" class="mt-0"><br>
+        <p class="mt-2">Naslovna slika:</p>
+        <input type="file" name="slika" class="mt-0" required><br>
+        <p class="mt-2">Ostale slike:</p>
+        <input type="file" name="slike[]" class="mt-0" multiple><br>
         <button class="mt-3" name="dugme">Dodaj proizvod</button>
         </form>
         <?php 
@@ -80,7 +50,14 @@ include("partials/header.php"); ?>
                                 if(@move_uploaded_file($tmp, $slikaIme)) {
                                     echo Info::success("Slika dodana");
                                     Statistics::log("logs/proizvodi.log", "{$_SESSION['email']} : uspesan upload slike za proizvod id: $id, ime slike: $id.jpg");
-                                } else echo Info::error("Neuspesno dodavanje avatara");
+                                } else echo Info::error("Neuspesno dodavanje naslovne slike");
+                           }
+                       }
+                       for ($i=0; $i<count($_FILES['slike']['name']); $i++) {
+                           $slikeIme=microtime(true).".jpg";
+                           if(@move_uploaded_file($_FILES['slike']['tmp_name'][$i], "images/".$slikeIme)) {
+                                $upit="INSERT INTO slikeproizvoda (proizvodID, imeSlike) VALUES ($id, '{$slikeIme}')";
+                                $db->query($upit);
                            }
                        }
                    }
@@ -94,5 +71,5 @@ include("partials/header.php"); ?>
 
 
 
-</div> <!-- -----end-wrapper----- -->
+
 <?php include("partials/footer.php"); ?>

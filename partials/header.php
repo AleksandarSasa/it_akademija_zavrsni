@@ -5,6 +5,8 @@ require_once("require.php");
 <html lang="en">
 <head>
     <!-- Required meta tags -->
+    <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Keywords" content="Online prodavnica cveca, cvecara, prodaja cveca na veliko, rasadnik, cvecara ">
@@ -18,7 +20,7 @@ require_once("require.php");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/single.js"></script>
     <title>Cvecara Flos</title>
 </head>
 <?php 
@@ -42,7 +44,7 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
                      else $slika="images/avatars/default.jpg";
                  }
                  
-                    if(Login::loginCheck()) { echo "<span style='color:#77f'><img src='{$slika}' height='20px'>{$_SESSION['ime']}</span> ({$_SESSION['status']})"; 
+                    if(Login::loginCheck()) { echo "<span style='color:#77f'><img src='{$slika}' height='20px' style='margin-top:-2px;'>&nbsp;{$_SESSION['ime']}</span> ({$_SESSION['status']})"; 
                     }
                         else echo "<a href='login.php'><i class='fas fa-user'></i>&nbsp;Prijava</a>&nbsp;";
                  ?>   
@@ -51,7 +53,8 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
                 </p>
                 </article>
                 <article>
-                    <p>&nbsp;<i class="fas fa-shopping-cart"></i>&nbsp<span>0</span> </p>
+                   <p></p>
+                    <!-- <p>&nbsp;<i class="fas fa-shopping-cart"></i>&nbsp<span>0</span> </p> -->
                 </article>
             </section>
             <hr> <!-- ----------end-section-topBar---------- -->

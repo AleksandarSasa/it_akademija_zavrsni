@@ -1,6 +1,11 @@
 
 </div> <!-- -----end-wrapper----- -->
-<div class="wrapper footer">FOOTER</div>
+<div class="wrapper footer">
+<article><p>Cvecara Girasole</p></article>
+<article><p>+387 66 457 789</p></article>
+<article><p>Crkvina 27, Samac</p></article>
+<article><p>&copy; Sva prava zadrzana</p></article>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

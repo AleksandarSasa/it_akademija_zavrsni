@@ -78,16 +78,58 @@ main {
 
 /* ----------section-sidebar---------- */
 .sidebar {
-    flex: 0 0 17%;
+    flex: 0 0 14%;
+}
+.grupa {
+    border: 1px solid black;
 }
 
 /* ----------section-center---------- */
 .center {
-    flex: 0 0 77%;
+    flex: 0 0 80%;
 }
 /* ----------section-footer---------- */
 .footer {
     background-color: #b8b4b4;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+/* ----------products---------- */
+.product-container {
+    display:flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+}
+.product {
+    flex: 0 0 30%;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.product-naslov {
+    text-decoration: underline;
+    text-align: center;
+}
+.product-tekst {
+    height: 90px;
+    margin-top: 5px;
+}
+.product-cena {
+    color: red;
+    text-align: center;
+}
+.product img {
+    margin-top: -3px;
+}
+.komentariautor {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    margin-top: 5px;
 }
 /* ----------login.php---------- */
 .login-container {
@@ -128,6 +170,9 @@ main {
     /* display: flex;
     justify-content: center;
     align-items: center; */
+}
+textarea {
+    border-radius: 5px;
 }
 /* ----------media queries---------- */
 @media only screen and (max-width: 575px) {
