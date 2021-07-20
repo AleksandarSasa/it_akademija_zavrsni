@@ -53,7 +53,7 @@ if(!$db->connect()) { echo "<div style='text-align:center'>".Info::error("Neuspj
                 </p>
                 </article>
                 <article>
-                    <p>&nbsp;<i class="fas fa-shopping-cart"></i>&nbsp<span>0</span> </p>
+                    <p></p>
                 </article>
             </section>
             <hr> <!-- ----------end-section-topBar---------- -->

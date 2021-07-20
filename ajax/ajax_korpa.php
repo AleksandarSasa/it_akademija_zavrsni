@@ -13,7 +13,7 @@ if($funkcija=="napraviKorpu") {
         while($red=$db->fobject($rez)) {
         echo "{$red->naslov}({$red->cena}&euro;)<br>";
 
-        echo "<button type='button' onclick='kupi({$red->id})'>Kupi</button>";
+        echo "<button type='button' style='margin-right:5px' onclick='kupi({$red->id})'>Kupi</button>";
         echo "<button type='button' onclick='obrisi({$red->id})'>Obrisi</button>";
         echo "<br>";
     }
