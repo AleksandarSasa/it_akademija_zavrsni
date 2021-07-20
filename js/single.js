@@ -21,7 +21,6 @@ function proveriFormu() {
 }
 function kupi(idProizvoda){
     $.post("ajax/ajax_proizvodi.php", {idProizvoda:idProizvoda}, function(response){
-        korpabroj();
         alert(response);
     })
 }

@@ -13,7 +13,7 @@ if($funkcija=="napraviKorpu") {
         while($red=$db->fobject($rez)) {
         echo "{$red->naslov}({$red->cena}&euro;)<br>";
 
-        echo "<button type='button' style='margin-right:5px' onclick='kupi({$red->id})'>Kupi</button>";
+        echo "<button type='button' onclick='kupi({$red->id})'>Kupi</button>";
         echo "<button type='button' onclick='obrisi({$red->id})'>Obrisi</button>";
         echo "<br>";
     }
@@ -57,8 +57,8 @@ if($funkcija=="kupiSve"){
     else echo "Kupljen proizvod";
 }
 
-if($funkcija=="korpabroj"){
-    $upit="SELECT * FROM korpa WHERE id={$_SESSION['id']} AND kupljen=0";
-    $rez=$db->query($upit);
-    echo mysqli_num_rows($rez);
-}
+// if($funkcija=="korpabroj"){
+//     $upit="SELECT * FROM korpa WHERE id={$_SESSION['id']} AND kupljen=0";
+//     $rez=$db->query($upit);
+//     echo mysqli_num_rows($rez);
+// }
